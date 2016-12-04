@@ -60,8 +60,10 @@ def createdb(filename):
 			couponlink 			VARCHAR(255),
 			couponsharelink 	VARCHAR(255)
 			);''')
-
+	print 'create database table successfully'
+	print 'start loading....'
 	savetodb(filename,conn,cur);
+	print 'successfully load excel file to sqlite db'
 	if cur:
 		cur.close()
 	if conn:
@@ -104,10 +106,13 @@ def listallfile():
 	path = sys.path[0]
 	xlsfiles=[]
 	for filename in os.listdir(path):
-		suff=filename.split('.')[1]
-		suff=suff.strip().lower()
-		if(suff=='xls'):
-			xlsfiles.append(filename)
+		try:
+			suff=filename.split('.')[1]
+			suff=suff.strip().lower()
+			if(suff=='xls'):
+				xlsfiles.append(filename)
+		except:
+			continue
 
 	#print xlsfiles
 	return xlsfiles
