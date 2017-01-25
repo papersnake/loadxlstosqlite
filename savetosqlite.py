@@ -29,7 +29,7 @@ import os,sys
 商品优惠券推广链接		couponsharelink 	VARCHAR(255)
 '''
 def createdb(filename):
-	conn = sqlite3.connect('test.db')
+	conn = sqlite3.connect('test')
 	print('ceate database successfully')
 	cur = conn.cursor()  
 	#sqlite if exists drop table
