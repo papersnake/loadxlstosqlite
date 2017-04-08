@@ -96,6 +96,8 @@ def savetodb(filename,conn,cur):
 		#sql+='values(?,?)'
 		#print param
 		cur.executemany(sql,param)
+		sql='delete from tbkiteminfo where itemcats="成人用品/情趣用品"'
+		cur.execute(sql)
 		conn.commit()
 	except Exception as e:
 		print e
