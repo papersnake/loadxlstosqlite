@@ -60,10 +60,10 @@ def createdb(filename):
 			couponlink 			VARCHAR(255),
 			couponsharelink 	VARCHAR(255)
 			);''')
-	print 'create database table successfully'
-	print 'start loading....'
+	print('create database table successfully')
+	print('start loading....')
 	savetodb(filename,conn,cur);
-	print 'successfully load excel file to sqlite db'
+	print('successfully load excel file to sqlite db')
 	if cur:
 		cur.close()
 	if conn:
@@ -81,9 +81,9 @@ def savetodb(filename,conn,cur):
 	col_names = []
 
 	param=[];
-	for i in xrange(1, nrows):
+	for i in range(1, nrows):
 		cell=[]
-		for j in xrange(0, ncols):
+		for j in range(0, ncols):
 			cell.append(sheet.cell(i,j).value)
 			#cell.append(str(j))
 			#tmp=tuple(cell)
@@ -100,7 +100,7 @@ def savetodb(filename,conn,cur):
 		cur.execute(sql)
 		conn.commit()
 	except Exception as e:
-		print e
+		print(e)
 		#pprint.pprint(dump(cur))
 		conn.rollback()
 
@@ -121,10 +121,10 @@ def listallfile():
 
 def choosefile(filelist):
 	filenum=len(filelist)
-	print filelist[1]
+	print(filelist)
 	if filenum>1 :
-		for i in xrange(0,filenum):
-			print str(i) +':'+filelist[i]
+		for i in range(0,filenum):
+			print(str(i) +':'+filelist[i])
 
 		str_input=u"请选择要导入的文件标号:"
 		str_input=str_input.encode('gbk')
@@ -133,7 +133,7 @@ def choosefile(filelist):
 			#print filelist[int(user_input)]
 			return filelist[int(user_input)]
 		except Exception as e:
-			print e
+			print(e)
 	else:
 		print #filelist[0]
 		return filelist[0]
@@ -143,9 +143,9 @@ if __name__=='__main__':
 	filelist=listallfile()
 	choosedfile=choosefile(filelist)
 
-	print choosedfile
+	print(choosedfile)
 
-	print 'start load to database.'
+	print('start load to database.')
 	createdb(choosedfile)
 	
 	#createdb()
